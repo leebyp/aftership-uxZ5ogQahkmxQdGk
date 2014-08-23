@@ -11,6 +11,8 @@
 	var Checkpoint = require('../models/checkpoint');
 	var GeneralError = require('../models/general_error');
 
+	var Cheerio = require('cheerio');
+
 	// config
 	var config = {
 		number_of_token_per_job: 1,
@@ -48,6 +50,18 @@
 		var results = {};
 		results[trackings[0].getTrackingNumber()] = response_body;
 		callback(null, results);
+	};
+
+	Purolator.prototype.parse = function(trackings, results, callback) {
+		console.log(Utility.Timer.micro() + ': ' + this.config.slug + ' parse');
+
+		for (var i=0; i<trackings.length; i++) {
+			var checkpoints = [];
+			var data = results[trackings[i].getTrackingNumber()];
+			var $ = Cheerio.load(data);
+
+			console.log($.html());
+		}
 	};
 
 	module.exports = Purolator;
