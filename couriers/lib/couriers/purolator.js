@@ -42,5 +42,13 @@
 		callback(null, params);
 	};
 
+	Purolator.prototype.beforeParse = function(trackings, response_body, callback) {
+		console.log(Utility.Timer.micro() + ': ' + this.config.slug + ' beforeParse');
+		
+		var results = {};
+		results[trackings[0].getTrackingNumber()] = response_body;
+		callback(null, results);
+	};
+
 	module.exports = Purolator;
 });
