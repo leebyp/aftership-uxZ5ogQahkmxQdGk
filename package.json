@@ -25,7 +25,6 @@
 		"change-case": "2.1.1",
 		"cheerio": "0.17.0",
 		"country-data": "0.0.13",
-		"courier-country": "git+ssh://git@github.com:AfterShip/courier-country-private.git",
 		"lodash": "2.4.1",
 		"moment": "2.7.0",
 		"ratelimiter": "1.0.3",
