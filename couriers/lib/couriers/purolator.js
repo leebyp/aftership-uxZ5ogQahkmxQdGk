@@ -28,5 +28,19 @@
 
 	_util.inherits(Purolator, _abstract);
 
+	Purolator.prototype.createRequest = function(trackings, callback) {
+		console.log(Utility.Timer.micro() + ': ' + this.config.slug + ' createRequest');
+
+		var params = {
+			method: 'get',
+			url: config.url + trackings[0].getTrackingNumber(),
+			headers: {
+				'User-Agent': Utility.Random.userAgent()
+			}
+		};
+
+		callback(null, params);
+	};
+
 	module.exports = Purolator;
 });
