@@ -3,6 +3,7 @@
 */
 
 (function () {
+	'use strict';
 
 	var _abstract = require('../abstract_courier');
 	var _util = require('util');
@@ -65,4 +66,4 @@
 	};
 
 	module.exports = Purolator;
-});
+})();
