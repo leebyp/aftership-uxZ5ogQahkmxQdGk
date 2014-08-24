@@ -101,16 +101,15 @@
 		for (var i=0; i<trackings.length; i++) {
 			var tracking = trackings[i];
 
-			var checkpoints = [];
 			var data = results[tracking.getTrackingNumber()];
 			var $ = Cheerio.load(data);
 
-			var useful = $('#1359654114029').text();
-			useful = useful.substr(0, useful.length-205);
+			var shipment_info = $('#1359654114029').text();
+			shipment_info = shipment_info.substr(0, shipment_info.length-205);
 
 			// @NOTE: potentially dangerous eval statement
 			var history, details, associated;
-			eval(useful +
+			eval(shipment_info +
 				'\n history = jsHistoryTable' +
 				'\n details = detailsData' +
 				'\n associated = assocPackages');
