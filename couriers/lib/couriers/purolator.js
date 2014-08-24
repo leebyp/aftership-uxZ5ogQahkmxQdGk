@@ -63,6 +63,8 @@
 
 			console.log($.html());
 		}
+		
+		callback(null, trackings);
 	};
 
 	module.exports = Purolator;
