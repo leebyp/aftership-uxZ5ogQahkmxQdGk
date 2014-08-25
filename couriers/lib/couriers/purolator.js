@@ -150,6 +150,7 @@
 				var checkpoint = _buildCheckpoint(history[j]);
 				checkpoints.push(checkpoint);
 			}
+			checkpoints.reverse();
 			tracking.setCheckpoints(checkpoints);
 
 		}
