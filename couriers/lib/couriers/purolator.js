@@ -98,6 +98,26 @@
 			return original;
 		}
 
+		function _updateCheckpointAddress(original, update_info) {
+			var info = update_info.split(',');
+			var city = info[0].split(' ')[0];
+			var state = info[1];
+			original.setCity(city);
+			original.setState(state);
+			return original;
+		}
+
+		function _buildCheckpoint(history) {
+			var checkpoint = new Checkpoint();
+			checkpoint
+				.setMessage(history[3])
+				.setCheckpointTime(moment.utc(history[0] + ' ' + history[1], 'YYYY-MM-DD HH:mm:ss'))
+				.setCheckpointTimeString(history[0] + ' ' + history[1], 'YYYY-MM-DD HH:mm:ss');
+			var updated_address = _updateCheckpointAddress(checkpoint.getAddress(), history[2]);
+			checkpoint.setAddress(updated_address);
+			return checkpoint;
+		}
+
 		for (var i=0; i<trackings.length; i++) {
 			var tracking = trackings[i];
 
@@ -124,15 +144,14 @@
 			var updated_shipment = _updateShipment(tracking.getShipment(), details);
 			tracking.setShipment(updated_shipment);
 
-			// console.log('=================');
-			// console.log(tracking);
-			// console.log('=================');
-			// console.log(history);
-			// console.log('=================');
-			// console.log(details);
-			// console.log('=================');
-			// console.log(associated);
-			// console.log('=================');
+			// updates checkpoints with details
+			var checkpoints = tracking.getCheckpoints();
+			for (var j=0; j<history.length; j++) {
+				var checkpoint = _buildCheckpoint(history[j]);
+				checkpoints.push(checkpoint);
+			}
+			tracking.setCheckpoints(checkpoints);
+
 		}
 
 		callback(null, trackings);
