@@ -17,13 +17,13 @@ describe('Courier test to track Purolator: ', function() {
       tracking_number: '330218400340'
     }));
 
-    it('should get trackings without error', function(done) {
+    xit('should get trackings without error', function(done) {
       courier.getTrackings(trackings, function(err, trackings) {
         done();
       });
     });
 
-    it('should update tracking origin address', function() {
+    xit('should update tracking origin address', function() {
       var origin = trackings[0].getOriginAddress();
       origin.getCountryIso3().should.eql('CA');
       origin.getState().should.eql('ON');
@@ -33,7 +33,7 @@ describe('Courier test to track Purolator: ', function() {
       origin.getCoordinates().should.eql([]);
     });
 
-    it('should update tracking destination address', function() {
+    xit('should update tracking destination address', function() {
       var destination = trackings[0].getDestinationAddress();
       destination.getCountryIso3().should.eql('CA');
       destination.getState().should.eql('SK');
@@ -43,7 +43,7 @@ describe('Courier test to track Purolator: ', function() {
       destination.getCoordinates().should.eql([]);
     });
 
-    it('should update tracking shipment details', function() {
+    xit('should update tracking shipment details', function() {
       var shipment = trackings[0].getShipment();
       shipment.getType().should.eql('Purolator Express Envelope');
       shipment.getWeight().should.eql(1);
@@ -52,7 +52,7 @@ describe('Courier test to track Purolator: ', function() {
       shipment.getSignedBy().should.eql('ERLING');
     });
 
-    it('should update tracking checkpoints details', function() {
+    xit('should update tracking checkpoints details', function() {
       var checkpoints = trackings[0].getCheckpoints();
       checkpoints.length.should.eql(5);
       checkpoints[0].getMessage().should.eql('Shipping label created with reference(s): 2038495-2');
